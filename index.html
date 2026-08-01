@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torchia — Design senza complicazioni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS ===== */
+:root{
+  --bg: #ECE6E7;
+  --ink: #17161A;
+  --muted: #706B70;
+  --pink: #F03DA0;
+  --violet: #7A4CE0;
+  --violet-select: #A384F9;
+  --blue: #4C7CF0;
+  --violet-grad: linear-gradient(135deg, #A384F9 0%, #6F2ADB 55%, #4C7CF0 100%);
+  --black: #0B0B0C;
+  --card-radius: 22px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-hand: 'Gochi Hand', cursive;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block;}
+
+em{font-family:var(--font-display);font-style:italic;font-weight:500;}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--bg);
+  padding:24px 0;
+}
+.navbar-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 32px;
+}
+.nav-logo{height:26px;width:auto;}
+.nav-actions{display:flex;gap:10px;align-items:center;}
+
+.btn{
+  font-family:var(--font-body);
+  font-size:14px;
+  font-weight:600;
+  border-radius:100px;
+  padding:11px 20px;
+  cursor:pointer;
+  border:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn:hover{transform:translateY(-1px);opacity:.92;}
+.btn-outline{
+  background:transparent;
+  color:var(--ink);
+  border:1.5px solid rgba(23,22,26,0.25);
+}
+.btn-solid{
+  background:var(--black);
+  color:#fff;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title{
+  font-family:var(--font-body);
+  font-weight:300;
+  font-size:40px;
+  line-height:0.85;
+  letter-spacing:-0.5px;
+}
+.section-title.centered{text-align:center;margin:0 auto 48px;}
+
+/* ===== HERO ===== */
+.hero{padding:20px 32px 60px;}
+.hero-inner{
+  max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0;
+    min-height: 420px;
+
+}
+.hero-text h1{
+  font-family:var(--font-body);
+  font-weight:300;
+  font-size:52px;
+  line-height:0.8;
+  letter-spacing:-1px;
+  color:var(--ink);
+}
+.hero-text{max-width:480px;}
+.hero-sub{
+  margin-top:20px;
+  font-size:16px;
+  color:var(--muted);
+}
+.circle-wrap{
+  position: relative;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    color: #000000;
+    display: inline-block;
+    padding: 0 4px;
+}
+.circle-svg{
+  position:absolute;
+  left:-8px;
+  top:-14px;
+  width:calc(100% + 16px);
+  height:calc(100% + 28px);
+  pointer-events:none;
+  object-fit:contain;
+}
+.underline-pink{
+  position:relative;
+  color:var(--ink);
+}
+.underline-pink::after{
+  content:'';
+  position:absolute;
+  left:-4px;right:-4px;
+  bottom:-8px;
+  height:14px;
+  background-image:url('img/sottolineatura.png');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:100% 100%;
+  z-index:-1;
+}
+
+.hero-media{
+  width:420px;
+  height:420px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-media img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* ===== INTRO / VIDEO ===== */
+.intro{padding:100px 32px 80px;text-align:center;}
+.intro .section-title{max-width:640px;margin-left:auto;margin-right:auto;}
+
+.video-wrap{
+  position:relative;
+  max-width:640px;
+  margin:60px auto 0;
+}
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  border-radius:20px;
+  overflow:hidden;
+  background:#111;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,0.25);
+}
+.video-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.annotation{
+  position:absolute;
+  top:-70px;
+  right:-90px;
+  font-family:var(--font-hand);
+  font-size:22px;
+  color:var(--ink);
+  text-align:center;
+  line-height:1.3;
+  transform:rotate(-4deg);
+}
+.arrow-svg{
+  width:70px;
+  height:70px;
+  margin:0 auto;
+  object-fit:contain;
+}
+
+.quote{
+max-width: 560px;
+    margin: 56px auto 0;
+    font-family: var(--font-display);
+    font-style: regular;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.5;
+    color: #5e5e5e;
+    position: relative;
+    padding: 0 30px;
+}
+.quote-mark{
+  font-family:Georgia, serif;
+  font-size:80px;
+  color:var(--muted);
+  position:absolute;
+}
+.quote-mark-open{top:-10px;left:-10px;}
+.quote-mark-close{bottom:-30px;right:-10px;}
+
+/* ===== PROCESS / CARDS ===== */
+.process{padding:100px 32px;text-align:center;}
+.cards{
+  max-width:1080px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.card{
+  border-radius:var(--card-radius);
+  aspect-ratio:3/4;
+  background-size:cover;
+  /* background-position:center;  */
+  background-color:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:28px;
+  text-align:left;
+  color:#fff;
+}
+.card h3{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.card p{
+  font-size:14px;
+  line-height:1.45;
+  opacity:.92;
+  max-width:220px;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials{padding:100px 0;text-align:center;}
+.testimonials .section-title{padding:0 32px;}
+
+.testimonial-scroll{
+  margin-top:56px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  padding:36px 0 24px;
+  scroll-snap-type:x proximity;
+  cursor:grab;
+  -webkit-overflow-scrolling:touch;
+}
+.testimonial-scroll::-webkit-scrollbar{display:none;height:0;}
+.testimonial-scroll.dragging{cursor:grabbing;scroll-snap-type:none;}
+
+.testimonial-track{
+  display:flex;
+  gap:40px;
+  padding:0 32px;
+  width:max-content;
+}
+.testimonial-card{
+ position: relative;
+    background: #f7f2f2;
+    border-radius: 28px;
+    padding: 32px 34px 30px;
+    width: 360px;
+    flex: 0 0 480px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+    scroll-snap-align: start;
+    user-select: none;
+    box-shadow: 14px 4px 24px rgba(0, 0, 0, 0.12);
+}
+.t-head{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  min-height:auto;
+  margin-bottom:0;
+  padding-left:0;
+}
+.t-avatar{
+  position:static;
+  width:72px;height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#ddd;
+  border:none;
+  box-shadow:none;
+  flex-shrink:0;
+  pointer-events:none;
+}
+.t-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.testimonial-card strong{
+  font-size:16px;
+  font-weight:700;
+  color:var(--ink);
+}
+.t-role{
+  font-family:var(--font-body);
+  font-style:italic;
+  font-weight:500;
+  font-size:14px;
+  color:var(--muted);
+}
+.testimonial-card p{
+  margin-left:90px;
+  font-size:14.5px;
+  line-height:1.6;
+  color:var(--muted);
+}
+.t-stars{
+  margin-left:90px;
+  display:flex;
+  gap:4px;
+  color:#FFC63C;
+  font-size:19px;
+  line-height:1;
+}
+
+/* ===== FORM SECTION ===== */
+.form-section{padding:100px 32px 60px;text-align:center;}
+.form-subtitle{
+  font-family:var(--font-body);
+  font-style:normal;
+  font-size:16px;
+  color:var(--muted);
+  margin-top:12px;
+  line-height:1.5;
+}
+
+.form-card{
+  max-width:760px;
+  margin:56px auto 0;
+  background:var(--black);
+  border-radius:26px;
+  padding:8px;
+  text-align:left;
+}
+.form-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  color:#B9B6BC;
+  font-size:12px;
+}
+.form-note{
+  background:rgba(255,255,255,0.06);
+  padding:8px 14px;
+  border-radius:100px;
+  font-weight:500;
+}
+.autosave-indicator{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-weight:600;
+  color:#fff;
+  white-space:nowrap;
+}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#F4C542;
+  transition:background .3s ease;
+  box-shadow:0 0 0 0 rgba(244,197,66,0.6);
+}
+.dot.saved{
+  background:#3CD16A;
+}
+
+form{padding:20px 28px 28px;}
+
+.form-block-label{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  color:#8F8B93;
+  margin-bottom:14px;
+}
+.progress-bar{
+  margin-top:10px;
+  height:4px;
+  border-radius:100px;
+  background:rgba(255,255,255,0.1);
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:12%;
+  border-radius:100px;
+  background:var(--violet-grad);
+  transition:width .3s ease;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.form-field{display:flex;flex-direction:column;gap:8px;}
+.form-field.full{margin-bottom:16px;}
+label{
+  font-size:13px;
+  font-weight:600;
+  color:#EDEBEF;
+}
+input, textarea{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  padding:12px 14px;
+  color:#fff;
+  font-family:var(--font-body);
+  font-size:14px;
+  outline:none;
+  resize:none;
+  transition:border-color .15s ease, background .15s ease;
+}
+input::placeholder, textarea::placeholder{color:#6E6A73;}
+input:focus, textarea:focus{
+  border-color:var(--violet);
+  background:rgba(255,255,255,0.08);
+}
+
+.category-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:12px;
+  margin-top:6px;
+}
+.category-box{
+  text-align:left;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  padding:14px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-family:var(--font-body);
+  transition:background .18s ease, border-color .18s ease, transform .15s ease, color .18s ease;
+}
+.category-box:hover{transform:translateY(-1px);}
+.category-box strong{font-size:13.5px;color:#fff;transition:color .18s ease;}
+.category-box span{font-size:12px;color:#9C98A0;line-height:1.35;transition:color .18s ease;}
+
+/* Selected state: only border + text turn violet, background stays the same as the form */
+.category-box.selected{
+  background:rgba(255,255,255,0.05);
+  border-color:var(--violet-select);
+}
+.category-box.selected strong,
+.category-box.selected span{color:var(--violet-select);}
+
+.form-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:14px;
+  gap:16px;
+}
+.form-footer-note{
+  font-size:11px;
+  color:#6E6A73;
+  max-width:340px;
+  line-height:1.4;
+}
+.btn-invia{
+  background:var(--violet-grad);
+  color:#fff;
+  border:none;
+  border-radius:100px;
+  padding:12px 22px;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn-invia:hover{transform:translateY(-1px);opacity:.92;}
+
+/* ===== FORM SUCCESS SCREEN ===== */
+.form-success{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:90px 40px;
+}
+.success-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:26px;
+}
+.success-icon svg{width:18px;height:18px;}
+.success-title{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:26px;
+  color:#fff;
+  margin-bottom:14px;
+}
+.success-title em{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:500;
+  color:#fff;
+}
+.success-accent{
+  background:var(--violet-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  font-family:var(--font-body);
+  font-weight:600;
+}
+.success-sub{
+  font-family:var(--font-body);
+  font-style:italic;
+  font-size:14px;
+  color:#B9B6BC;
+  max-width:420px;
+  line-height:1.55;
+  margin-bottom:30px;
+}
+#success-email{
+  font-weight:700;
+}
+.success-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.btn-success-download{
+  background:#fff;
+  color:#0B0B0C;
+  border:none;
+  border-radius:100px;
+  padding:12px 20px;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  font-family:var(--font-body);
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn-success-download:hover{transform:translateY(-1px);opacity:.92;}
+.btn-success-back{
+  background:transparent;
+  color:#fff;
+  border:1.5px solid rgba(255,255,255,0.25);
+  border-radius:100px;
+  padding:12px 20px;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  font-family:var(--font-body);
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn-success-back:hover{transform:translateY(-1px);opacity:.92;}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;
+  padding:70px 32px 60px;
+  color:var(--muted);
+}
+.footer-logo{
+  height:22px;
+  width:auto;
+  margin:0 auto 10px;
+}
+.footer p{font-size:13px;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px){
+  .hero-inner{flex-direction:column;text-align:center;}
+  .hero-text{max-width:100%;}
+  .hero-media{width:280px;height:280px;}
+  .annotation{display:none;}
+  .cards{grid-template-columns:1fr;}
+  .testimonial-track{gap:28px;}
+  .testimonial-card{width:300px;flex:0 0 300px;padding:26px 26px 24px;}
+  .t-avatar{width:60px;height:60px;}
+  .testimonial-card p, .t-stars{margin-left:78px;}
+  .form-row{grid-template-columns:1fr;}
+  .category-grid{grid-template-columns:1fr 1fr;}
+  .section-title{font-size:30px;}
+  .hero-text h1{font-size:38px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important;}
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  will-change:opacity, transform;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+
+/* ===== CARD HOVER TILT ===== */
+.card{
+  transition:transform .35s ease;
+}
+.card:nth-child(odd):hover{
+  transform:rotate(-2.5deg);
+}
+.card:nth-child(even):hover{
+  transform:rotate(2.5deg);
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <img src="img/logo.png" alt="Torchia" class="nav-logo">
+    <div class="nav-actions">
+      <button class="btn btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Prenota una Call
+      </button>
+      <button class="btn btn-solid" id="cta-preventivo">Preventivo</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>
+        Tutto il <span class="circle-wrap">design<img class="circle-svg" src="img/cerchio.png" alt=""></span><br>
+        del tuo brand,<br>
+        senza <span class="underline-pink">agenzie.</span>
+      </h1>
+      <p class="hero-sub">Ricevi un preventivo su misura in poche ore.</p>
+    </div>
+    <div class="hero-media">
+      <img id="hero-sequence" src="img/hero_00000.png" alt="Torchia mascot">
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / VIDEO -->
+<section class="intro">
+  <h2 class="section-title centered">
+    Niente agenzie, <em>niente<br>complicazioni</em> : solo <span class="underline-pink">design</span><br>fatto bene.
+  </h2>
+
+  <div class="video-wrap">
+    <div class="annotation">
+      <span>Un messaggio<br>per te!</span>
+      <img class="arrow-svg" src="img/freccia.png" alt="">
+    </div>
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube.com/embed/KzYekS1YDt0?si=AszD55AgOd9IAgmT"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <blockquote class="quote">
+    <span class="quote-mark quote-mark-open">&ldquo;</span>
+    Non sarò semplicemente il tuo designer. Sarò la persona che ti aiuta a dare forma alle idee, fare le scelte giuste e costruire un brand che abbia senso nel tempo.
+    <span class="quote-mark quote-mark-close">&rdquo;</span>
+  </blockquote>
+</section>
+
+<!-- CARDS -->
+<section class="process">
+  <h2 class="section-title centered">
+    Design senza<br><em><span class="underline-pink">complicazioni</span>.</em>
+  </h2>
+
+  <div class="cards">
+    <div class="card" style="background-image:url('img/card1.png')">
+      <h3>Compila</h3>
+      <p>Compila il form e invia la richiesta, raccontami di te e della tua azienda.</p>
+    </div>
+    <div class="card" style="background-image:url('img/card2.png')">
+      <h3>Preventivo</h3>
+      <p>Accetta il preventivo e stabiliamo il budget e contenuti assieme.</p>
+    </div>
+    <div class="card" style="background-image:url('img/card3.png')">
+      <h3>Realizzazione</h3>
+      <p>Una volta accordati, si parte con la realizzazione delle proposte e dei contenuti per la tua azienda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2 class="section-title centered">
+    Cosa dicono<br>di me i <em><span class="underline-pink">clienti</span>.</em>
+  </h2>
+
+  <div class="testimonial-scroll" id="testimonial-scroll">
+    <div class="testimonial-track" id="testimonial-track">
+      <div class="testimonial-card">
+        <div class="t-head">
+          <img src="img/feedphoto1.png" alt="" class="t-avatar" onerror="this.style.display='none'">
+          <div class="t-info">
+            <strong>Patrizio</strong>
+            <span class="t-role">Realizzazione brand identity</span>
+          </div>
+        </div>
+        <p>Posso dire con assoluta certezza che Fabrizio ha una marcia in più. Non è il classico designer che "fa un bel logo": entra nel progetto, capisce la visione, ...</p>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-head">
+          <img src="img/feedphoto2.png" alt="" class="t-avatar" onerror="this.style.display='none'">
+          <div class="t-info">
+            <strong>Gabriele</strong>
+            <span class="t-role">Realizzazione Packaging</span>
+          </div>
+        </div>
+        <p>C’è poco da dire, semplicemente il migliore ...</p>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-head">
+          <img src="img/feedphoto3.png" alt="" class="t-avatar" onerror="this.style.display='none'">
+          <div class="t-info">
+            <strong>Patrizio</strong>
+            <span class="t-role">Realizzazione brand identity</span>
+          </div>
+        </div>
+        <p>Posso dire con assoluta certezza che Fabrizio ha una marcia in più. Non è il classico designer che "fa un bel logo": entra nel progetto, capisce la visione, ...</p>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-head">
+          <img src="img/feedphoto4.png" alt="" class="t-avatar" onerror="this.style.display='none'">
+          <div class="t-info">
+            <strong>Patrizio</strong>
+            <span class="t-role">Realizzazione brand identity</span>
+          </div>
+        </div>
+        <p>Posso dire con assoluta certezza che Fabrizio ha una marcia in più. Non è il classico designer che "fa un bel logo": entra nel progetto, capisce la visione, ...</p>
+        <div class="t-stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="preventivo">
+  <h2 class="section-title centered">
+    Richiedi un<br><em><span class="underline-pink">preventivo</span>.</em>
+  </h2>
+  <p class="form-subtitle">Compila il form e ricevi una risposta su misura entro 48h.</p>
+
+  <div class="form-card">
+    <div class="form-topbar">
+      <span class="form-note">Prenditi 4-6 minuti. <strong> Più dettagli = miglior prezzo </strong></span>
+      <span class="autosave-indicator" id="autosave-indicator">
+        <span class="dot" id="autosave-dot"></span>
+        <span id="autosave-text">Autosalvataggio</span>
+      </span>
+    </div>
+
+    <form id="preventivo-form">
+      <div class="form-block-label">
+        LA TUA ATTIVITÀ
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="nome">Nome e Cognome*</label>
+          <input type="text" id="nome" name="nome" placeholder="es. Mario Rossi" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email di lavoro*</label>
+          <input type="email" id="email" name="email" placeholder="es. mario@rossi.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="azienda">Azienda/Brand*</label>
+          <input type="text" id="azienda" name="azienda" placeholder="es. Rossi Srl" required>
+        </div>
+        <div class="form-field">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" placeholder="https://">
+        </div>
+      </div>
+
+      <div class="form-field full">
+        <label>Cosa vuoi realizzare con me?</label>
+        <div class="category-grid">
+          <button type="button" class="category-box" data-value="Brand Identity">
+            <strong>Brand Identity</strong>
+            <span>Logo, palette, identità visiva della tua azienda.</span>
+          </button>
+          <button type="button" class="category-box" data-value="Media Kit">
+            <strong>Media Kit</strong>
+            <span>Materiale video e foto per il tuo prodotto/servizio.</span>
+          </button>
+          <button type="button" class="category-box" data-value="3D Video">
+            <strong>3D Video</strong>
+            <span>Video 3D per il tuo prodotto, attività o servizio.</span>
+          </button>
+          <button type="button" class="category-box" data-value="Consulenza">
+            <strong>Consulenza</strong>
+            <span>Una consulenza per migliorare il tuo brand.</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-field full">
+        <label for="descrizione">Descrivi la tua azienda, dimmi qualcosa di te.</label>
+        <textarea id="descrizione" name="descrizione" rows="4" placeholder="Racconta del tuo brand, target e cosa ti rappresenta, cosa vuoi ottenere"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="budget">Budget</label>
+          <input type="text" id="budget" name="budget" placeholder="€ 1.000 - € 3.000">
+        </div>
+        <div class="form-field">
+          <label for="timeline">Timeline</label>
+          <input type="text" id="timeline" name="timeline" placeholder="Nel breve termine, ho una scadenza...">
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <span class="form-footer-note">Questo sito viene salvato automaticamente, puoi chiudere in ogni momento.</span>
+        <button type="submit" class="btn-invia">Invia <span>&rarr;</span></button>
+      </div>
+    </form>
+
+    <div class="form-success" id="form-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="#3CD16A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 class="success-title">Brief <em>ricevuto</em>.<span class="success-accent"> Sei pronto!</span></h3>
+      <p class="success-sub">Abbiamo ricevuto tutto quanto, e risponderà a <span id="success-email"></span> entro 48h. Controlla lo spam nei prossimi giorni.</p>
+      <div class="success-actions">
+        <button type="button" class="btn-success-download" id="btn-download-brief">Scarica il brief come PDF</button>
+        <button type="button" class="btn-success-back" id="btn-back-form">Indietro</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="img/logo.png" alt="Torchia" class="footer-logo">
+  <p>© Fabrizio Torchia 2026</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* =====================================================
+   1) HERO IMAGE SEQUENCE (hero0000.png -> hero0100.png loop)
+   ===================================================== */
+(function heroSequence(){
+  const img = document.getElementById('hero-sequence');
+  if(!img) return;
+
+  const TOTAL_FRAMES = 101; // 0000 -> 0100
+  const FPS = 24;
+  let frame = 0;
+  let lastTime = 0;
+  const interval = 1000 / FPS;
+
+  function pad(n){ return String(n).padStart(5, '0'); }
+
+  function tick(timestamp){
+    if(timestamp - lastTime >= interval){
+      img.src = `img/hero_${pad(frame)}.png`;
+      frame = (frame + 1) % TOTAL_FRAMES;
+      lastTime = timestamp;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Respect reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!prefersReducedMotion){
+    requestAnimationFrame(tick);
+  }
+})();
+
+/* =====================================================
+   2) CTA "Preventivo" scrolls to form
+   ===================================================== */
+document.getElementById('cta-preventivo')?.addEventListener('click', () => {
+  document.getElementById('preventivo')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* =====================================================
+   3) CATEGORY SELECTION (Brand Identity / Media Kit / 3D Video / Consulenza)
+   ===================================================== */
+const selectedCategories = new Set();
+const categoryBoxes = document.querySelectorAll('.category-box');
+
+categoryBoxes.forEach(box => {
+  box.addEventListener('click', () => {
+    const value = box.dataset.value;
+    if(selectedCategories.has(value)){
+      selectedCategories.delete(value);
+      box.classList.remove('selected');
+    } else {
+      selectedCategories.add(value);
+      box.classList.add('selected');
+    }
+    updateProgress();
+  });
+});
+
+/* =====================================================
+   4) PROGRESS BAR (based on filled fields)
+   ===================================================== */
+const form = document.getElementById('preventivo-form');
+const progressFill = document.getElementById('progress-fill');
+
+const trackedFieldIds = ['nome', 'email', 'azienda', 'website', 'descrizione', 'budget', 'timeline'];
+
+function updateProgress(){
+  let filled = 0;
+  let total = trackedFieldIds.length + 1; // +1 for categories
+
+  trackedFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && el.value.trim() !== '') filled++;
+  });
+  if(selectedCategories.size > 0) filled++;
+
+  const pct = Math.max(6, Math.round((filled / total) * 100));
+  if(progressFill) progressFill.style.width = pct + '%';
+}
+
+trackedFieldIds.forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updateProgress);
+});
+
+/* =====================================================
+   5) AUTOSAVE TO LOCALSTORAGE EVERY 5 SECONDS
+   ===================================================== */
+const AUTOSAVE_KEY = 'torchia_preventivo_form';
+const dot = document.getElementById('autosave-dot');
+const autosaveText = document.getElementById('autosave-text');
+
+function collectFormData(){
+  const data = {};
+  trackedFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    data[id] = el ? el.value : '';
+  });
+  data.categorie = Array.from(selectedCategories);
+  return data;
+}
+
+function restoreFormData(){
+  try {
+    const raw = localStorage.getItem(AUTOSAVE_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+
+    trackedFieldIds.forEach(id => {
+      const el = document.getElementById(id);
+      if(el && data[id] !== undefined) el.value = data[id];
+    });
+
+    if(Array.isArray(data.categorie)){
+      data.categorie.forEach(value => {
+        const box = document.querySelector(`.category-box[data-value="${value}"]`);
+        if(box){
+          box.classList.add('selected');
+          selectedCategories.add(value);
+        }
+      });
+    }
+    updateProgress();
+  } catch(e){
+    console.warn('Impossibile ripristinare i dati salvati:', e);
+  }
+}
+
+function autosave(){
+  try {
+    const data = collectFormData();
+    localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data));
+    setSavedState();
+  } catch(e){
+    console.warn('Autosave fallito:', e);
+  }
+}
+
+function setSavedState(){
+  dot.classList.add('saved');
+  autosaveText.textContent = 'Salvato';
+}
+
+function setPendingState(){
+  dot.classList.remove('saved');
+  autosaveText.textContent = 'Autosalvataggio';
+}
+
+// Restore on load
+restoreFormData();
+
+// Autosave cycle: every 5s save -> show "Salvato" -> after 1.5s show "Autosalvataggio" until next cycle
+setPendingState();
+setInterval(() => {
+  autosave();
+  setTimeout(setPendingState, 1500);
+}, 5000);
+
+/* =====================================================
+   6) FORM SUBMISSION -> GENERATE PDF
+   ===================================================== */
+const formTopbar = document.querySelector('.form-topbar');
+const formSuccess = document.getElementById('form-success');
+const successEmailEl = document.getElementById('success-email');
+
+form?.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Save immediately, then show the success screen (no PDF download here)
+  autosave();
+
+  const data = collectFormData();
+  showSuccessScreen(data);
+});
+
+function showSuccessScreen(data){
+  if(successEmailEl) successEmailEl.textContent = data.email || '';
+  if(form) form.style.display = 'none';
+  if(formTopbar) formTopbar.style.display = 'none';
+  if(formSuccess) formSuccess.style.display = 'flex';
+}
+
+function hideSuccessScreen(){
+  if(formSuccess) formSuccess.style.display = 'none';
+  if(form) form.style.display = 'block';
+  if(formTopbar) formTopbar.style.display = 'flex';
+
+  // Restore fields from localStorage when going back
+  restoreFormData();
+}
+
+document.getElementById('btn-download-brief')?.addEventListener('click', () => {
+  let data;
+  try {
+    const raw = localStorage.getItem(AUTOSAVE_KEY);
+    data = raw ? JSON.parse(raw) : collectFormData();
+  } catch(e){
+    data = collectFormData();
+  }
+  generatePDF(data);
+});
+
+document.getElementById('btn-back-form')?.addEventListener('click', () => {
+  hideSuccessScreen();
+});
+
+// Logo bianco incorporato direttamente in base64: evita che il fetch del
+// file fallisca per CORS quando la pagina viene aperta da file:// o da
+// hosting che blocca la lettura dell'immagine come blob.
+const LOGO_WHITE_BASE64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAAdCAYAAABotghBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAABQ9JREFUeAHtWo1V2zAQvnSBhgnwBqUTYCYonSDpBNAJbCYITGCYADqBzQTQCexOQDrBVYfORSjSSf4j4ZHvPb0k8ul80v1IdwrAHp2AiHPVlqoVqj3AQCgeqWqlak/c6PsR7LE9sFJyVoaJGgaAefpwDtsEWTZ8QJAXC0rprXA1NkEZT1Os+acYIg4xt/AxMZWhh8I2vfcLjIygwjm00F6VwB5jYrciJoeccozw9Z6Bm/v2WCF9zmF7dN4SPnmEab06hT0mwWw2W6uPC4HkJ0wNtrryLS1u1zGVhxv8XWnZMUwN9ZJTnDDEoN4iRtu3bF5srGfYIYeNkaePwlmWN92jo9/JhJcYBhlDYbVTgSct/i0tioNPqdqCjAAiwQZDBY8VvqRKc+N9ZvpE/FMHj1OWu/bItGKauTGmRD9qgy5l3rbT0PhFxPxoDke8bs+yRNC3tQHXO1fO9VWdGb4oUPLwKIWrvnOLT8YTyTx8c2FSS8+EWhyiNoTa8SyB14o2aej7sTD2mXeswjHOYVaO+ZFSXE5BKMCv6Jj3tchBWOAaA5MTxrr2/9oxQRfIO+cOngXKSD0ylwYP1+J8M56T0l0GFaVw1AqLRWbNT0LhWA/JQCW4owX2VDhqZdehF6GcimwoHcMK9/Fa8PhrjJgHasOxEaNwQoZ8yEIdyWqU5TW3CwlFR/2EkBKPqEpbBEixiaO/Mn9wKnINbtBhK4NuyBXPmfr8oVrDfY3qukEdylx7553doegr6JcG0bsuVLtnPo/q41KgJ2X3uhhR81mCXmNawxx0ynzA8/8KjnlZWLiY1oKF+E6kS2HMsYM+jbFEpi0CtIcW7wz5MCiM8R6g8PWWE72Hd5zfwqCVUFh8H1i+uUf2qELOGB5+Jjz7a3ewN62FMV293ORN3nYT4NEI48nLK5gWCfTDOcnHUXID3P8YYjJI4ahPwlKIevL0V+DHEQ7PYVPoj+8gGMW20G4bJtirk7ZBBIZ6eGg/OvD0N+AHKTuBnmBjSaAn2FNOwBGddgG8ZVBmQM5EreYWKoU/O9FQhYeu7z57+n9Dv3ExiLl2FKGU3vhC57bAXkxKpZST6h/tPBrVUiUvOVclsBhF4aFFSXqOmxIJvDNwuCZlu4z5xBXufRiq8FDY83lbSOFDwmkTeH4K7w/k1a7IdEfRyPgddKShCq8Cz/sovOF8thd4AST+KXao4W8bqNPUxPPYXqdpFc6LWwkkvhO3tI9WMBwhg1kFnreFjl2AdE7qnM2MkZZJl/h9KksXMBwhHnSZkvseqmdULQvecL0RJKV2rtrZCpc8g06J5/SF879cfb3lQkoljHMVQRIPbW7tSb0QIRMhQ77xQ10Db68m6XBExaRr2A38EZ6lreFyJO3m8TzhEMzyXXtJ4bs8aRFzKeK6PixQxqEwl743SwTznruMoTPoQ6XVzKCVUBhr+4RxCNHNbQ+nsmQDMlrl5VzGNIsVvghhe3lq/c65rDkaOFKQTA10Q8PjdgK8tpcRpKGLG0Ky0YPhKz6Ct36O+jLFNb5Abf3m/XSJwv+3cICHGzySCD6mPIk1vhToJ/dwg3YlyYH8FzIMvHvmWyTQXkghO+FusrQ71W5i9lnUp1xS5hG8HC6IB42tQOeQ9wEelDNLp9Sr2IoYz+nMkGfO8qxZnmtPvXqpPnyGtVZjrix64itlAb/UmDumLQS6qo2gBm9aTzpHpSx/A/qs8X8dUDujNx3+B3iuS8GlPGnhAAAAAElFTkSuQmCC';
+
+function getImageDimensions(dataUrl){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+    img.onerror = () => reject(new Error('Impossibile leggere le dimensioni del logo'));
+    img.src = dataUrl;
+  });
+}
+
+async function generatePDF(data){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+
+  /* ---------- PAGE 1: black cover with centered white logo ---------- */
+  doc.setFillColor(11, 11, 12); // #0B0B0C
+  doc.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  try {
+    const logoDataUrl = LOGO_WHITE_BASE64;
+    const { width, height } = await getImageDimensions(logoDataUrl);
+    const maxLogoWidth = 80;
+    const ratio = width && height ? height / width : 0.3;
+    const logoW = maxLogoWidth;
+    const logoH = maxLogoWidth * ratio;
+    doc.addImage(
+      logoDataUrl,
+      'PNG',
+      (pageWidth - logoW) / 2,
+      (pageHeight - logoH) / 2,
+      logoW,
+      logoH
+    );
+  } catch(err){
+    // Fallback: draw text if the logo image can't be embedded
+    console.warn('Impossibile caricare il logo per la copertina PDF:', err);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(28);
+    doc.text('torchia', pageWidth / 2, pageHeight / 2, { align: 'center' });
+  }
+
+  addFormPage(doc, data, pageWidth, pageHeight);
+  doc.save('brief.pdf');
+}
+
+function addFormPage(doc, data, pageWidth, pageHeight){
+  doc.addPage();
+  doc.setFillColor(11, 11, 12);
+  doc.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  const marginX = 50;
+  let y = 70;
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.text('Richiesta di preventivo', marginX, y);
+
+  y += 14;
+  doc.setDrawColor(60, 60, 65);
+  doc.setLineWidth(0.5);
+  doc.line(marginX, y, pageWidth - marginX, y);
+
+  y += 36;
+
+  const fields = [
+    ['Nome e Cognome', data.nome],
+    ['Email di lavoro', data.email],
+    ['Azienda/Brand', data.azienda],
+    ['Website', data.website],
+    ['Cosa vuoi realizzare', (data.categorie && data.categorie.length) ? data.categorie.join(', ') : '-'],
+    ['Descrizione azienda', data.descrizione],
+    ['Budget', data.budget],
+    ['Timeline', data.timeline],
+  ];
+
+  doc.setFont('helvetica', 'normal');
+
+  fields.forEach(([label, value]) => {
+    doc.setFontSize(10.5);
+    doc.setTextColor(140, 138, 145);
+    doc.text(label.toUpperCase(), marginX, y);
+
+    y += 16;
+    doc.setFontSize(13);
+    doc.setTextColor(255, 255, 255);
+
+    const text = value && value.trim() !== '' ? value : '-';
+    const wrapped = doc.splitTextToSize(text, pageWidth - marginX * 2);
+    doc.text(wrapped, marginX, y);
+
+    y += (wrapped.length * 16) + 22;
+  });
+
+  doc.setFontSize(9);
+  doc.setTextColor(90, 88, 95);
+  doc.text('© Fabrizio Torchia 2026', marginX, pageHeight - 40);
+}
+
+/* =====================================================
+   7) TESTIMONIALS — DRAG TO SCROLL + WHEEL SUPPORT
+   Fixes the horizontal scroll so cards are reachable
+   with mouse drag, trackpad, and vertical wheel too.
+   ===================================================== */
+(function testimonialCarousel(){
+  const scroller = document.getElementById('testimonial-scroll');
+  const track = document.getElementById('testimonial-track');
+  if(!scroller || !track) return;
+
+  /* ---- Infinite loop setup: clone the card set so the
+     track reads [set1][set2][set3]. We start scrolled into
+     set2 (visually identical to set1) and silently snap
+     back by one set-width whenever the user scrolls past
+     a boundary, so it feels endless in both directions. ---- */
+  const originalCards = Array.from(track.children);
+  const cardsPerSet = originalCards.length;
+  for(let s = 0; s < 2; s++){
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  }
+  const allCards = Array.from(track.children);
+
+  let setWidth = 0;
+  function measureSetWidth(){
+    setWidth = allCards[cardsPerSet].offsetLeft - allCards[0].offsetLeft;
+  }
+  function initLoopPosition(){
+    measureSetWidth();
+    if(setWidth > 0) scroller.scrollLeft = setWidth;
+  }
+  requestAnimationFrame(initLoopPosition);
+
+  let loopTicking = false;
+  scroller.addEventListener('scroll', () => {
+    if(loopTicking) return;
+    loopTicking = true;
+    requestAnimationFrame(() => {
+      if(setWidth > 0){
+        if(scroller.scrollLeft <= 0){
+          scroller.scrollLeft += setWidth;
+        } else if(scroller.scrollLeft >= setWidth * 2){
+          scroller.scrollLeft -= setWidth;
+        }
+      }
+      loopTicking = false;
+    });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      measureSetWidth();
+      if(setWidth > 0) scroller.scrollLeft = setWidth;
+    }, 150);
+  });
+
+  let isDown = false;
+  let startX = 0;
+  let scrollStart = 0;
+  let moved = false;
+
+  scroller.addEventListener('mousedown', (e) => {
+    isDown = true;
+    moved = false;
+    scroller.classList.add('dragging');
+    startX = e.pageX - scroller.offsetLeft;
+    scrollStart = scroller.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+
+  scroller.addEventListener('mouseleave', () => {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+
+  scroller.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scroller.offsetLeft;
+    const walk = x - startX;
+    if(Math.abs(walk) > 4) moved = true;
+    scroller.scrollLeft = scrollStart - walk;
+  });
+
+  // Prevent click-through firing after a drag
+  scroller.addEventListener('click', (e) => {
+    if(moved){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+  // Let vertical mouse-wheel scroll the carousel horizontally
+  scroller.addEventListener('wheel', (e) => {
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+      scroller.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, { passive: false });
+})();
+
+/* =====================================================
+   8) SCROLL REVEAL — semplici animazioni a comparsa
+   Aggiunge solo un effetto fade + slide-up quando gli
+   elementi entrano in viewport. Non modifica nient'altro.
+   ===================================================== */
+(function scrollReveal(){
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const targets = document.querySelectorAll([
+    '.hero-text',
+    '.hero-media',
+    '.intro .section-title',
+    '.video-wrap',
+    '.quote',
+    '.process .section-title',
+    '.card',
+    '.testimonials .section-title',
+    '.testimonial-card',
+    '.form-section .section-title',
+    '.form-subtitle',
+    '.form-card',
+    '.footer-logo',
+    '.footer p'
+  ].join(', '));
+
+  if(!targets.length) return;
+
+  if(prefersReducedMotion || !('IntersectionObserver' in window)){
+    targets.forEach(el => el.classList.add('reveal', 'is-visible'));
+    return;
+  }
+
+  targets.forEach(el => el.classList.add('reveal'));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  targets.forEach(el => revealObserver.observe(el));
+
+  // Fallback: elementi vicino al fondo pagina (es. il footer) possono non
+  // "intersecare" mai a causa del rootMargin negativo, perché non c'è
+  // altro scroll disponibile oltre la fine del documento. Quando si arriva
+  // in fondo, rivela comunque tutto ciò che resta nascosto.
+  function revealAtPageBottom(){
+    const scrollEl = document.documentElement;
+    const atBottom = window.innerHeight + window.scrollY >= scrollEl.scrollHeight - 4;
+    if(!atBottom) return;
+    targets.forEach(el => {
+      if(!el.classList.contains('is-visible')){
+        el.classList.add('is-visible');
+        revealObserver.unobserve(el);
+      }
+    });
+  }
+  window.addEventListener('scroll', revealAtPageBottom, { passive: true });
+  window.addEventListener('resize', revealAtPageBottom);
+  revealAtPageBottom();
+})();
+</script>
+</body>
+</html>
