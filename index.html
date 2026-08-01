@@ -162,7 +162,7 @@ em{font-family:var(--font-display);font-style:italic;font-weight:500;}
   align-items:center;
   justify-content:center;
 }
-.hero-media img{
+.hero-media video{
   width:100%;
   height:100%;
   object-fit:contain;
@@ -686,7 +686,7 @@ input:focus, textarea:focus{
       <p class="hero-sub">Ricevi un preventivo su misura in poche ore.</p>
     </div>
     <div class="hero-media">
-      <img id="hero-sequence" src="img/hero_00000.png" alt="Torchia mascot">
+      <video id="hero-sequence" src="img/hero.webm" autoplay loop muted playsinline></video>
     </div>
   </div>
 </section>
@@ -911,37 +911,6 @@ input:focus, textarea:focus{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-/* =====================================================
-   1) HERO IMAGE SEQUENCE (hero0000.png -> hero0100.png loop)
-   ===================================================== */
-(function heroSequence(){
-  const img = document.getElementById('hero-sequence');
-  if(!img) return;
-
-  const TOTAL_FRAMES = 101; // 0000 -> 0100
-  const FPS = 24;
-  let frame = 0;
-  let lastTime = 0;
-  const interval = 1000 / FPS;
-
-  function pad(n){ return String(n).padStart(5, '0'); }
-
-  function tick(timestamp){
-    if(timestamp - lastTime >= interval){
-      img.src = `img/hero_${pad(frame)}.png`;
-      frame = (frame + 1) % TOTAL_FRAMES;
-      lastTime = timestamp;
-    }
-    requestAnimationFrame(tick);
-  }
-
-  // Respect reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!prefersReducedMotion){
-    requestAnimationFrame(tick);
-  }
-})();
-
 /* =====================================================
    2) CTA "Preventivo" scrolls to form
    ===================================================== */
