@@ -1038,11 +1038,44 @@ setInterval(() => {
 }, 5000);
 
 /* =====================================================
-   6) FORM SUBMISSION -> GENERATE PDF
+   6) FORM SUBMISSION -> INVIO A GOOGLE APPS SCRIPT + PDF
    ===================================================== */
 const formTopbar = document.querySelector('.form-topbar');
 const formSuccess = document.getElementById('form-success');
 const successEmailEl = document.getElementById('success-email');
+
+// Incolla qui l'URL del tuo Web App di Google Apps Script
+// (Distribuisci > Nuova distribuzione > Web app > "Chiunque" ha accesso).
+// L'URL termina con /exec, es: https://script.google.com/macros/s/XXXXXXXX/exec
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHQJMVlyKE5XOSh3Lij2naQOzN4SXWvmNS4FzQw4orqhs7ut9vIHcWB6Ozv7FEp7mM4Q/exec';
+
+function sendFormToGoogleScript(data){
+  if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('INCOLLA_QUI')){
+    console.warn('GOOGLE_SCRIPT_URL non configurato: nessun dato inviato allo script.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('nome', data.nome || '');
+  formData.append('email', data.email || '');
+  formData.append('azienda', data.azienda || '');
+  formData.append('website', data.website || '');
+  formData.append('categorie', (data.categorie && data.categorie.length) ? data.categorie.join(', ') : '');
+  formData.append('descrizione', data.descrizione || '');
+  formData.append('budget', data.budget || '');
+  formData.append('timeline', data.timeline || '');
+
+  // mode:'no-cors' perché Apps Script non restituisce header CORS leggibili:
+  // la richiesta parte comunque e lo script scrive su Sheet + manda l'email,
+  // semplicemente non possiamo leggere la risposta dal browser.
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).catch(err => {
+    console.error('Errore invio dati a Google Apps Script:', err);
+  });
+}
 
 form?.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -1051,6 +1084,7 @@ form?.addEventListener('submit', (e) => {
   autosave();
 
   const data = collectFormData();
+  sendFormToGoogleScript(data);
   showSuccessScreen(data);
 });
 
